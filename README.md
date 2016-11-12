@@ -278,7 +278,7 @@ class Tarea(models.Model):
         self.save()
 
     def __str__(self):
-        return self.title
+        return self.titulo
 ```
 
 Para una excelente explicación, te vuelvo a recomendar
@@ -364,3 +364,12 @@ Ahora vamos a loguearnos:
 Una vez adentro, veremos algo como esto:
 
 ![Admin](https://raw.github.com/aboglioli/django-ejemplo/master/docs/images/admin.jpg)
+
+Y si seleccionamos para añadir una nueva Tarea, tendremos un panel como el
+siguiente:
+
+![Task](https://raw.github.com/aboglioli/django-ejemplo/master/docs/images/new_task.jpg)
+
+Y ya está, tendremos nuestra tarea recién creada:
+
+![Added Task](https://raw.github.com/aboglioli/django-ejemplo/master/docs/images/added_task.jpg)
