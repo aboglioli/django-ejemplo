@@ -246,7 +246,7 @@ INSTALLED_APPS = [
 ```
 
 # Creando nuestros modelos
-En el archivo *blog/models.py* definimos todos los objetos llamados Models.
+En el archivo *lista_tareas/models.py* definimos todos los objetos llamados Models.
 
 Si los abrimos vamos a ver algo como esto:
 
@@ -262,10 +262,12 @@ Quitamos todo y escribimos un código como este:
 from django.db import models
 from django.utils import timezone
 
-class Post(models.Model):
+class Tarea(models.Model):
     autor = models.ForeignKey('auth.User')
     titulo = models.CharField(max_length=200)
     descripcion = models.TextField()
+    completada = models.BooleanField(default=False)
+    activa = models.BooleanField(default=True)
     created_date = models.DateTimeField(
         default=timezone.now)
     published_date = models.DateTimeField(
@@ -282,6 +284,17 @@ class Post(models.Model):
 Para una excelente explicación, te vuelvo a recomendar
 [esta](https://tutorial.djangogirls.org/es/django_models/) sección de la página
 de DjangoGirl donde podrás entender cada uno de los conceptos utilizados.
+
+Como puedes ver, nuestro modelo de **Tarea** tiene propiedades, las cuales son
+de un tipo predeterminado por Django, es decir, el que le asignamos al utilizar:
+ForeignKey, CharField, TextField, DateTimeField, étc.
+
+Estos tipos de datos nos lo provee el framework y son llamados *campos* o
+*fields* de nuestro modelo. Vienen de los campos o tipos de datos propios de la
+base de datos.
+
+Para conocer todos los *fields* disponibles en *django.db* puedes acceder
+[aquí](https://docs.djangoproject.com/es/1.10/ref/models/fields/#model-field-types).
 
 ## Crear tablas para los modelos en tu base de datos
 
@@ -301,3 +314,53 @@ python manage.py migrate lista_tareas
 ```
 
 Nuestro modelo de **Tarea** está ahora en nuestra base de datos.
+
+## Administrador de Django
+
+Para agregar, editar y borrar las tareas que hemos modelado, utilizaremos el
+administrador de Django.
+
+Vamos a abrir el archivo *lista_tareas/admin.py* y reemplazar su contenido con esto:
+
+```python
+from django.contrib import admin
+from .models import Tarea
+
+admin.site.register(Tarea)
+```
+
+Como puedes ver, importamos (incluimos) el modelo Tarea definido en el capítulo
+anterior. Para hacer nuestro modelo visible en la página del administrador,
+tenemos que registrar el modelo con admin.site.register(Tarea).
+
+Es hora de ver tu modelo Tarea. Recuerda ejecutar:
+
+```bash
+python manage.py runserver
+```
+
+en la consola para correr el servidor web. Ve al navegador y tipea la dirección
+
+```bash
+http://127.0.0.1:8000/admin/
+```
+
+Pero antes, para poder ingresar deberás crear un superusuario (un usuario que
+tiene control sobre todo lo que hay en el sitio ). Vuelve hacia atrás a tu línea
+de comandos y tipea:
+
+```python
+python manage.py createsuperuser
+```
+Presiona enter y tipea tu nombre de usuario (en minúsculas, sin espacios),
+dirección de email y contraseña cuando sean requeridos.
+
+En mi caso, cree un usuario llamado *admin* con contraseña *admin123*.
+
+Ahora vamos a loguearnos:
+
+![Login](https://raw.github.com/aboglioli/django-ejemplo/master/docs/images/login.jpg)
+
+Una vez adentro, veremos algo como esto:
+
+![Admin](https://raw.github.com/aboglioli/django-ejemplo/master/docs/images/admin.jpg)

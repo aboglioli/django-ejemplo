@@ -5,6 +5,8 @@ class Tarea(models.Model):
     autor = models.ForeignKey('auth.User')
     titulo = models.CharField(max_length=200)
     descripcion = models.TextField()
+    completada = models.BooleanField(default=False)
+    activa = models.BooleanField(default=True)
     created_date = models.DateTimeField(
         default=timezone.now)
     published_date = models.DateTimeField(
