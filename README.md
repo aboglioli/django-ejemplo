@@ -373,3 +373,11 @@ siguiente:
 Y ya está, tendremos nuestra tarea recién creada:
 
 ![Added Task](https://raw.github.com/aboglioli/django-ejemplo/master/docs/images/added_task.jpg)
+
+Si quieres saber más sobre el administrador de Django, puedes visitar la
+documentación de Django:
+[https://docs.djangoproject.com/en/1.8/ref/contrib/admin/](Si quieres saber más
+sobre el administrador de Django, puedes visitar la documentación de Django:
+https://docs.djangoproject.com/en/1.8/ref/contrib/admin/)
+
+**De ahora en más, continuaremos de forma práctica.**
