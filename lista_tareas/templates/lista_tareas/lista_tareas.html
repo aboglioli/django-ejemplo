@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  {% for tarea in tareas %}
+  <div>
+    <p>Publicada {{ tarea.published_date }}</p>
+    <h1>{{ tarea.titulo }}</h1>
+    <p>{{ tarea.descripcion }}</p>
+  </div>
+    {{ tarea }}
+  {% endfor %}
+</body>
+</html>
